@@ -71,7 +71,7 @@ class AuthController extends ChangeNotifier {
         if (email == 'rehan@finsim.com') {
           _mockUid = 'mock_uid_123';
         } else {
-          _mockUid = 'mock_uid_${email.replaceAll(RegExp(r'[^a-zA-Z0-9]'), '_')}';
+          _mockUid = 'mock_uid_${email.toLowerCase().replaceAll(RegExp(r'[^a-zA-Z0-9]'), '_')}';
         }
         _mockEmail = email;
         
@@ -104,7 +104,7 @@ class AuthController extends ChangeNotifier {
       if (FirebaseService.useMock || _auth == null) {
         await Future.delayed(const Duration(milliseconds: 600));
         // Generate a unique derived mock UID based on the email
-        _mockUid = 'mock_uid_${email.replaceAll(RegExp(r'[^a-zA-Z0-9]'), '_')}';
+        _mockUid = 'mock_uid_${email.toLowerCase().replaceAll(RegExp(r'[^a-zA-Z0-9]'), '_')}';
         _mockEmail = email;
 
         // Add mock profile to mock DB

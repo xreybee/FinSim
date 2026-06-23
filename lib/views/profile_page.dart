@@ -59,7 +59,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Future<void> _pickImage() async {
     try {
-      final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+      final XFile? image = await _picker.pickImage(source: ImageSource.gallery, maxWidth: 400, maxHeight: 400, imageQuality: 60);
       if (image != null) {
         final bytes = await image.readAsBytes();
         final base64Str = base64Encode(bytes);
