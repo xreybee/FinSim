@@ -79,7 +79,10 @@ class _RegisterPageState extends State<RegisterPage> {
         child: SafeArea(
           child: Center(
             child: SingleChildScrollView(
-              padding: EdgeInsets.symmetric(horizontal: horizontalPad, vertical: isSmallPhone ? 12 : 24),
+              padding: EdgeInsets.symmetric(
+                horizontal: horizontalPad,
+                vertical: isSmallPhone ? 12 : 24,
+              ),
               child: ConstrainedBox(
                 constraints: BoxConstraints(maxWidth: maxCardWidth),
                 child: Form(
@@ -97,7 +100,10 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                           Text(
                             'Kembali',
-                            style: GoogleFonts.inter(color: textColor, fontSize: 16),
+                            style: GoogleFonts.inter(
+                              color: textColor,
+                              fontSize: 16,
+                            ),
                           ),
                         ],
                       ),
@@ -139,10 +145,12 @@ class _RegisterPageState extends State<RegisterPage> {
                               prefixIcon: Icons.email_outlined,
                               keyboardType: TextInputType.emailAddress,
                               validator: (val) {
-                                if (val == null || val.isEmpty)
+                                if (val == null || val.isEmpty) {
                                   return 'Email wajib diisi';
-                                if (!val.contains('@'))
+                                }
+                                if (!val.contains('@')) {
                                   return 'Format email tidak valid';
+                                }
                                 return null;
                               },
                             ),
@@ -157,17 +165,23 @@ class _RegisterPageState extends State<RegisterPage> {
                               obscureText: _obscurePass,
                               suffixIcon: IconButton(
                                 icon: Icon(
-                                  _obscurePass ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                                  _obscurePass
+                                      ? Icons.visibility_off_outlined
+                                      : Icons.visibility_outlined,
                                   color: subColor,
                                   size: 20,
                                 ),
-                                onPressed: () => setState(() => _obscurePass = !_obscurePass),
+                                onPressed: () => setState(
+                                  () => _obscurePass = !_obscurePass,
+                                ),
                               ),
                               validator: (val) {
-                                if (val == null || val.isEmpty)
+                                if (val == null || val.isEmpty) {
                                   return 'Password wajib diisi';
-                                if (val.length < 6)
+                                }
+                                if (val.length < 6) {
                                   return 'Password minimal 6 karakter';
+                                }
                                 return null;
                               },
                             ),
@@ -182,17 +196,23 @@ class _RegisterPageState extends State<RegisterPage> {
                               obscureText: _obscureConfirm,
                               suffixIcon: IconButton(
                                 icon: Icon(
-                                  _obscureConfirm ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                                  _obscureConfirm
+                                      ? Icons.visibility_off_outlined
+                                      : Icons.visibility_outlined,
                                   color: subColor,
                                   size: 20,
                                 ),
-                                onPressed: () => setState(() => _obscureConfirm = !_obscureConfirm),
+                                onPressed: () => setState(
+                                  () => _obscureConfirm = !_obscureConfirm,
+                                ),
                               ),
                               validator: (val) {
-                                if (val == null || val.isEmpty)
+                                if (val == null || val.isEmpty) {
                                   return 'Konfirmasi password wajib diisi';
-                                if (val != _passwordController.text)
+                                }
+                                if (val != _passwordController.text) {
                                   return 'Password tidak cocok';
+                                }
                                 return null;
                               },
                             ),

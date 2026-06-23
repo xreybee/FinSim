@@ -21,7 +21,13 @@ class _TransactionsTabState extends State<TransactionsTab> {
   String _filterCategory = 'Semua Kategori';
   String _filterTime = 'Semua Waktu';
 
-  final List<String> _categories = const ['Makanan', 'Transportasi', 'Gaya Hidup', 'Hiburan', 'Dana Darurat'];
+  final List<String> _categories = const [
+    'Makanan',
+    'Transportasi',
+    'Gaya Hidup',
+    'Hiburan',
+    'Dana Darurat',
+  ];
 
   @override
   void initState() {
@@ -61,7 +67,10 @@ class _TransactionsTabState extends State<TransactionsTab> {
 
     if (amt <= 0) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Masukkan jumlah uang yang valid'), backgroundColor: Colors.redAccent),
+        const SnackBar(
+          content: Text('Masukkan jumlah uang yang valid'),
+          backgroundColor: Colors.redAccent,
+        ),
       );
       return;
     }
@@ -80,7 +89,9 @@ class _TransactionsTabState extends State<TransactionsTab> {
     }
   }
 
-  List<TransactionModel> _getFilteredTransactions(List<TransactionModel> rawList) {
+  List<TransactionModel> _getFilteredTransactions(
+    List<TransactionModel> rawList,
+  ) {
     return rawList.where((t) {
       if (_searchController.text.isNotEmpty) {
         final query = _searchController.text.toLowerCase();
@@ -104,7 +115,8 @@ class _TransactionsTabState extends State<TransactionsTab> {
           final oneWeekAgo = now.subtract(const Duration(days: 7));
           if (t.date.isBefore(oneWeekAgo)) return false;
         } else if (_filterTime == 'Bulan Ini') {
-          if (t.date.month != now.month || t.date.year != now.year) return false;
+          if (t.date.month != now.month || t.date.year != now.year)
+            return false;
         }
       }
       return true;
@@ -126,13 +138,16 @@ class _TransactionsTabState extends State<TransactionsTab> {
     );
 
     final categoryDropdown = DropdownButtonFormField<String>(
-      value: _filterCategory,
+      initialValue: _filterCategory,
       dropdownColor: isDark ? const Color(0xFF003025) : Colors.white,
       style: TextStyle(color: textColor, fontSize: 13),
       decoration: InputDecoration(
         labelText: 'Kategori',
         labelStyle: TextStyle(color: subtextColor, fontSize: 11),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 12,
+        ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: enabledBorderColor),
           borderRadius: BorderRadius.circular(15),
@@ -145,7 +160,10 @@ class _TransactionsTabState extends State<TransactionsTab> {
         fillColor: fillColor,
       ),
       items: const [
-        DropdownMenuItem(value: 'Semua Kategori', child: Text('Semua Kategori')),
+        DropdownMenuItem(
+          value: 'Semua Kategori',
+          child: Text('Semua Kategori'),
+        ),
         DropdownMenuItem(value: 'Makanan', child: Text('Makanan')),
         DropdownMenuItem(value: 'Transportasi', child: Text('Transportasi')),
         DropdownMenuItem(value: 'Gaya Hidup', child: Text('Gaya Hidup')),
@@ -162,13 +180,16 @@ class _TransactionsTabState extends State<TransactionsTab> {
     );
 
     final timeDropdown = DropdownButtonFormField<String>(
-      value: _filterTime,
+      initialValue: _filterTime,
       dropdownColor: isDark ? const Color(0xFF003025) : Colors.white,
       style: TextStyle(color: textColor, fontSize: 13),
       decoration: InputDecoration(
         labelText: 'Rentang Waktu',
         labelStyle: TextStyle(color: subtextColor, fontSize: 11),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 12,
+        ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: enabledBorderColor),
           borderRadius: BorderRadius.circular(15),
@@ -237,10 +258,18 @@ class _TransactionsTabState extends State<TransactionsTab> {
     final textColor = isDark ? Colors.white : const Color(0xFF1E293B);
     final subtextColor = isDark ? Colors.white70 : const Color(0xFF546E7A);
     final subtextColor54 = isDark ? Colors.white54 : const Color(0x8A546E7A);
-    final fillColor = isDark ? Colors.white.withOpacity(0.06) : Colors.white.withOpacity(0.45);
-    final enabledBorderColor = isDark ? Colors.white.withOpacity(0.12) : Colors.black.withOpacity(0.12);
-    final expenseTextColor = isDark ? const Color(0xFFFF8A80) : const Color(0xFFD32F2F);
-    final dividerColor = isDark ? Colors.white.withOpacity(0.08) : Colors.black.withOpacity(0.08);
+    final fillColor = isDark
+        ? Colors.white.withOpacity(0.06)
+        : Colors.white.withOpacity(0.45);
+    final enabledBorderColor = isDark
+        ? Colors.white.withOpacity(0.12)
+        : Colors.black.withOpacity(0.12);
+    final expenseTextColor = isDark
+        ? const Color(0xFFFF8A80)
+        : const Color(0xFFD32F2F);
+    final dividerColor = isDark
+        ? Colors.white.withOpacity(0.08)
+        : Colors.black.withOpacity(0.08);
 
     final filteredTrans = _getFilteredTransactions(finance.transactions);
 
@@ -260,10 +289,14 @@ class _TransactionsTabState extends State<TransactionsTab> {
                 children: [
                   Text(
                     'Catat Pengeluaran Baru 💸',
-                    style: GoogleFonts.outfit(color: textColor, fontSize: 16, fontWeight: FontWeight.bold),
+                    style: GoogleFonts.outfit(
+                      color: textColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 16),
-                  
+
                   // Amount field
                   GlassTextField(
                     controller: _amountController,
@@ -276,13 +309,18 @@ class _TransactionsTabState extends State<TransactionsTab> {
 
                   // Category select
                   DropdownButtonFormField<String>(
-                    value: _selectedCategory,
-                    dropdownColor: isDark ? const Color(0xFF003025) : Colors.white,
+                    initialValue: _selectedCategory,
+                    dropdownColor: isDark
+                        ? const Color(0xFF003025)
+                        : Colors.white,
                     style: TextStyle(color: textColor),
                     decoration: InputDecoration(
                       labelText: 'Kategori Pos',
                       labelStyle: TextStyle(color: subtextColor),
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 16,
+                      ),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: enabledBorderColor),
                         borderRadius: BorderRadius.circular(15),
@@ -321,9 +359,12 @@ class _TransactionsTabState extends State<TransactionsTab> {
                     onPressed: () => _submitTransaction(finance),
                     child: Text(
                       'CATAT TRANSAKSI',
-                      style: GoogleFonts.outfit(fontWeight: FontWeight.bold, fontSize: 14),
+                      style: GoogleFonts.outfit(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                      ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -332,7 +373,11 @@ class _TransactionsTabState extends State<TransactionsTab> {
             // 2. TRANSACTION HISTORY TITLE
             Text(
               'Riwayat Pengeluaran Harian',
-              style: GoogleFonts.outfit(fontSize: 16, fontWeight: FontWeight.bold, color: textColor),
+              style: GoogleFonts.outfit(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: textColor,
+              ),
             ),
             const SizedBox(height: 12),
 
@@ -353,7 +398,10 @@ class _TransactionsTabState extends State<TransactionsTab> {
                 child: Center(
                   child: Text(
                     'Belum ada transaksi pengeluaran.',
-                    style: GoogleFonts.inter(color: subtextColor54, fontSize: 13),
+                    style: GoogleFonts.inter(
+                      color: subtextColor54,
+                      fontSize: 13,
+                    ),
                   ),
                 ),
               )
@@ -362,7 +410,8 @@ class _TransactionsTabState extends State<TransactionsTab> {
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: filteredTrans.length,
-                separatorBuilder: (_, __) => Divider(color: dividerColor, height: 1),
+                separatorBuilder: (_, _) =>
+                    Divider(color: dividerColor, height: 1),
                 itemBuilder: (context, index) {
                   final trans = filteredTrans[index];
                   IconData catIcon;
@@ -410,19 +459,28 @@ class _TransactionsTabState extends State<TransactionsTab> {
                       await finance.deleteTransaction(trans.id);
                       if (mounted) {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Transaksi berhasil dihapus')),
+                          const SnackBar(
+                            content: Text('Transaksi berhasil dihapus'),
+                          ),
                         );
                       }
                     },
                     child: ListTile(
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 4,
+                      ),
                       leading: CircleAvatar(
                         backgroundColor: catColor.withOpacity(0.15),
                         child: Icon(catIcon, color: catColor, size: 20),
                       ),
                       title: Text(
                         trans.note.isNotEmpty ? trans.note : trans.category,
-                        style: GoogleFonts.inter(color: textColor, fontSize: 13, fontWeight: FontWeight.w600),
+                        style: GoogleFonts.inter(
+                          color: textColor,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                       subtitle: Text(
                         '${trans.date.day}/${trans.date.month}/${trans.date.year} - ${trans.category}',
@@ -461,7 +519,11 @@ class _TransactionsTabState extends State<TransactionsTab> {
                     children: [
                       Text(
                         'Catat Pengeluaran Baru 💸',
-                        style: GoogleFonts.outfit(color: textColor, fontSize: 16, fontWeight: FontWeight.bold),
+                        style: GoogleFonts.outfit(
+                          color: textColor,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       const SizedBox(height: 16),
                       GlassTextField(
@@ -473,19 +535,26 @@ class _TransactionsTabState extends State<TransactionsTab> {
                       ),
                       const SizedBox(height: 12),
                       DropdownButtonFormField<String>(
-                        value: _selectedCategory,
-                        dropdownColor: isDark ? const Color(0xFF003025) : Colors.white,
+                        initialValue: _selectedCategory,
+                        dropdownColor: isDark
+                            ? const Color(0xFF003025)
+                            : Colors.white,
                         style: TextStyle(color: textColor),
                         decoration: InputDecoration(
                           labelText: 'Kategori Pos',
                           labelStyle: TextStyle(color: subtextColor),
-                          contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                          contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 16,
+                          ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: enabledBorderColor),
                             borderRadius: BorderRadius.circular(15),
                           ),
                           focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Color(0xFF00BFA5)),
+                            borderSide: const BorderSide(
+                              color: Color(0xFF00BFA5),
+                            ),
                             borderRadius: BorderRadius.circular(15),
                           ),
                           filled: true,
@@ -514,9 +583,12 @@ class _TransactionsTabState extends State<TransactionsTab> {
                         onPressed: () => _submitTransaction(finance),
                         child: Text(
                           'CATAT TRANSAKSI',
-                          style: GoogleFonts.outfit(fontWeight: FontWeight.bold, fontSize: 14),
+                          style: GoogleFonts.outfit(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                          ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -530,7 +602,11 @@ class _TransactionsTabState extends State<TransactionsTab> {
                 children: [
                   Text(
                     'Riwayat Pengeluaran Harian',
-                    style: GoogleFonts.outfit(fontSize: 16, fontWeight: FontWeight.bold, color: textColor),
+                    style: GoogleFonts.outfit(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: textColor,
+                    ),
                   ),
                   const SizedBox(height: 12),
 
@@ -549,12 +625,16 @@ class _TransactionsTabState extends State<TransactionsTab> {
                         ? Center(
                             child: Text(
                               'Belum ada transaksi pengeluaran.',
-                              style: GoogleFonts.inter(color: subtextColor54, fontSize: 13),
+                              style: GoogleFonts.inter(
+                                color: subtextColor54,
+                                fontSize: 13,
+                              ),
                             ),
                           )
                         : ListView.separated(
                             itemCount: filteredTrans.length,
-                            separatorBuilder: (_, __) => Divider(color: dividerColor, height: 1),
+                            separatorBuilder: (_, _) =>
+                                Divider(color: dividerColor, height: 1),
                             itemBuilder: (context, index) {
                               final trans = filteredTrans[index];
                               IconData catIcon;
@@ -595,30 +675,53 @@ class _TransactionsTabState extends State<TransactionsTab> {
                                     color: Colors.redAccent.withOpacity(0.2),
                                     borderRadius: BorderRadius.circular(10),
                                   ),
-                                  child: const Icon(Icons.delete, color: Colors.white),
+                                  child: const Icon(
+                                    Icons.delete,
+                                    color: Colors.white,
+                                  ),
                                 ),
                                 direction: DismissDirection.endToStart,
                                 onDismissed: (_) async {
                                   await finance.deleteTransaction(trans.id);
                                   if (mounted) {
                                     ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(content: Text('Transaksi berhasil dihapus')),
+                                      const SnackBar(
+                                        content: Text(
+                                          'Transaksi berhasil dihapus',
+                                        ),
+                                      ),
                                     );
                                   }
                                 },
                                 child: ListTile(
-                                  contentPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                                  contentPadding: const EdgeInsets.symmetric(
+                                    horizontal: 8,
+                                    vertical: 4,
+                                  ),
                                   leading: CircleAvatar(
                                     backgroundColor: catColor.withOpacity(0.15),
-                                    child: Icon(catIcon, color: catColor, size: 20),
+                                    child: Icon(
+                                      catIcon,
+                                      color: catColor,
+                                      size: 20,
+                                    ),
                                   ),
                                   title: Text(
-                                    trans.note.isNotEmpty ? trans.note : trans.category,
-                                    style: GoogleFonts.inter(color: textColor, fontSize: 13, fontWeight: FontWeight.w600),
+                                    trans.note.isNotEmpty
+                                        ? trans.note
+                                        : trans.category,
+                                    style: GoogleFonts.inter(
+                                      color: textColor,
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w600,
+                                    ),
                                   ),
                                   subtitle: Text(
                                     '${trans.date.day}/${trans.date.month}/${trans.date.year} - ${trans.category}',
-                                    style: TextStyle(color: subtextColor54, fontSize: 11),
+                                    style: TextStyle(
+                                      color: subtextColor54,
+                                      fontSize: 11,
+                                    ),
                                   ),
                                   trailing: Text(
                                     '- ${_formatIDR(trans.amount)}',

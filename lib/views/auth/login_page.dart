@@ -69,7 +69,10 @@ class _LoginPageState extends State<LoginPage> {
         child: SafeArea(
           child: Center(
             child: SingleChildScrollView(
-              padding: EdgeInsets.symmetric(horizontal: horizontalPad, vertical: isSmallPhone ? 12 : 24),
+              padding: EdgeInsets.symmetric(
+                horizontal: horizontalPad,
+                vertical: isSmallPhone ? 12 : 24,
+              ),
               child: ConstrainedBox(
                 constraints: BoxConstraints(maxWidth: maxCardWidth),
                 child: Form(
@@ -89,7 +92,9 @@ class _LoginPageState extends State<LoginPage> {
                             letterSpacing: 2.0,
                             shadows: [
                               Shadow(
-                                color: const Color(0xFF00BFA5).withOpacity(isDark ? 0.4 : 0.2),
+                                color: const Color(
+                                  0xFF00BFA5,
+                                ).withOpacity(isDark ? 0.4 : 0.2),
                                 blurRadius: 15,
                                 offset: const Offset(0, 4),
                               ),
@@ -117,8 +122,12 @@ class _LoginPageState extends State<LoginPage> {
                         children: [
                           IconButton(
                             icon: Icon(
-                              isDark ? Icons.light_mode_outlined : Icons.dark_mode_outlined,
-                              color: isDark ? Colors.amberAccent : const Color(0xFF546E7A),
+                              isDark
+                                  ? Icons.light_mode_outlined
+                                  : Icons.dark_mode_outlined,
+                              color: isDark
+                                  ? Colors.amberAccent
+                                  : const Color(0xFF546E7A),
                               size: 22,
                             ),
                             onPressed: () => themeCtrl.toggleTheme(),
@@ -151,10 +160,12 @@ class _LoginPageState extends State<LoginPage> {
                               prefixIcon: Icons.email_outlined,
                               keyboardType: TextInputType.emailAddress,
                               validator: (val) {
-                                if (val == null || val.isEmpty)
+                                if (val == null || val.isEmpty) {
                                   return 'Email wajib diisi';
-                                if (!val.contains('@'))
+                                }
+                                if (!val.contains('@')) {
                                   return 'Format email tidak valid';
+                                }
                                 return null;
                               },
                             ),
@@ -169,17 +180,23 @@ class _LoginPageState extends State<LoginPage> {
                               obscureText: _obscurePassword,
                               suffixIcon: IconButton(
                                 icon: Icon(
-                                  _obscurePassword ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                                  _obscurePassword
+                                      ? Icons.visibility_off_outlined
+                                      : Icons.visibility_outlined,
                                   color: subColor,
                                   size: 20,
                                 ),
-                                onPressed: () => setState(() => _obscurePassword = !_obscurePassword),
+                                onPressed: () => setState(
+                                  () => _obscurePassword = !_obscurePassword,
+                                ),
                               ),
                               validator: (val) {
-                                if (val == null || val.isEmpty)
+                                if (val == null || val.isEmpty) {
                                   return 'Password wajib diisi';
-                                if (val.length < 6)
+                                }
+                                if (val.length < 6) {
                                   return 'Password minimal 6 karakter';
+                                }
                                 return null;
                               },
                             ),
@@ -219,7 +236,10 @@ class _LoginPageState extends State<LoginPage> {
                         children: [
                           Text(
                             'Belum punya akun? ',
-                            style: TextStyle(color: subColor, fontSize: isSmallPhone ? 12 : 14),
+                            style: TextStyle(
+                              color: subColor,
+                              fontSize: isSmallPhone ? 12 : 14,
+                            ),
                           ),
                           GestureDetector(
                             onTap: () {
