@@ -23,8 +23,8 @@ class AuthController extends ChangeNotifier {
     } catch (e) {
       // Firebase not initialized, fallback to mock mode
       FirebaseService.initMock();
-      _mockUid = FirebaseService.loadedSessionUid ?? 'mock_uid_123';
-      _mockEmail = FirebaseService.loadedSessionEmail ?? 'rehan@finsim.com';
+      _mockUid = FirebaseService.loadedSessionUid;
+      _mockEmail = FirebaseService.loadedSessionEmail;
     }
   }
 

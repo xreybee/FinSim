@@ -58508,10 +58508,8 @@ r=(s==null?$.c6=$.eo():s).dS("[DEFAULT]")
 A.cA(r,$.dY(),!0)
 s=p.a=A.bef(new A.dw(r))
 s.arW(s.gtP().le()).h6(new A.afz(p))}catch(q){A.aWj()
-s=$.b16
-p.d=s==null?"mock_uid_123":s
-s=$.b15
-p.e=s==null?"rehan@finsim.com":s}},
+p.d=$.b16
+p.e=$.b15}},
 gNv(){if($.fS)return this.d
 var s=this.a
 if(s==null)s=null
