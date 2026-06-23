@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "668938805514",
+    "project_id": "finsim-ff784",
+    "storage_bucket": "finsim-ff784.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:668938805514:android:ed663714da127efb805af3",
+        "android_client_info": {
+          "package_name": "com.example.finsim"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuyryjBrSdsrEynkKCgoOcAddpc1ICJNs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

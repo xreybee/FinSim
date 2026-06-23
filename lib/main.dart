@@ -8,10 +8,14 @@ import 'services/firebase_service.dart';
 import 'views/auth/login_page.dart';
 import 'views/navigation_shell.dart';
 
+import 'firebase_options.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   try {
-    await Firebase.initializeApp();
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
   } catch (e) {
     // Catch configuration errors (e.g. missing google-services.json) 
     // and automatically enable the premium mock database sandbox.
